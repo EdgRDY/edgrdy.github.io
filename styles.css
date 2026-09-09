@@ -336,6 +336,114 @@ select:focus-visible, textarea:focus-visible {
 
 .formos-zinia.klaida { color: #a4423a; }
 
+/* ============================ straipsniai ============================ */
+
+.straipsniu-korteles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.straipsniu-korteles article {
+  background: var(--kortele);
+  border: 1px solid var(--linija);
+  padding: 1.6rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.straipsniu-korteles h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
+
+.straipsniu-korteles h3 a { color: var(--tekstas); text-decoration: none; }
+
+.straipsniu-korteles h3 a:hover { color: var(--akcentas-tamsus); }
+
+.straipsniu-korteles p {
+  color: var(--tekstas-svelnus);
+  font-size: 0.96rem;
+  margin-bottom: 1.2rem;
+}
+
+.straipsniu-korteles .skaityti {
+  margin-top: auto;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.straipsniu-korteles .skaityti:hover { text-decoration: underline; }
+
+/* ============================ DUK ============================ */
+
+.duk { max-width: 760px; }
+
+.duk details { border-bottom: 1px solid var(--linija); }
+
+.duk summary {
+  cursor: pointer;
+  padding: 1.1rem 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.duk summary::-webkit-details-marker { display: none; }
+
+.duk summary::after {
+  content: "+";
+  font-family: var(--font-antrastes);
+  font-size: 1.4rem;
+  color: var(--akcentas);
+  flex: none;
+  line-height: 1;
+}
+
+.duk details[open] summary::after { content: "\2212"; }
+
+.duk details[open] summary { color: var(--akcentas-tamsus); }
+
+.duk details p {
+  margin: 0 0 1.1rem;
+  color: var(--tekstas-svelnus);
+}
+
+/* ============================ straipsnio puslapis ============================ */
+
+.straipsnis h1 {
+  font-size: clamp(2rem, 4.5vw, 2.9rem);
+  margin-bottom: 0.6rem;
+}
+
+.straipsnio-meta {
+  color: var(--tekstas-svelnus);
+  font-size: 0.92rem;
+  margin-bottom: 2.2rem;
+}
+
+.straipsnis h2 {
+  font-size: 1.45rem;
+  margin: 2.2rem 0 0.8rem;
+}
+
+.straipsnis ul { color: var(--tekstas-svelnus); padding-left: 1.2rem; }
+
+.straipsnis li { margin-bottom: 0.4rem; }
+
+.straipsnio-cta {
+  margin-top: 2.5rem;
+  padding: 1.6rem 1.8rem;
+  background: var(--fonas-2);
+  border: 1px solid var(--linija);
+}
+
+.straipsnio-cta p { margin: 0 0 1rem; }
+
 /* ============================ poraštė ============================ */
 
 .porastė {
@@ -356,16 +464,17 @@ select:focus-visible, textarea:focus-visible {
 
 /* ============================ atsiradimo animacija ============================ */
 
-.atsiranda {
+/* Slepiama tik kai JS tikrai veikia (html.js), kitaip viskas matoma is karto */
+.js .atsiranda {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 500ms ease, transform 500ms ease;
 }
 
-.atsiranda.matomas { opacity: 1; transform: none; }
+.js .atsiranda.matomas { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .atsiranda { opacity: 1; transform: none; transition: none; }
+  .js .atsiranda { opacity: 1; transform: none; transition: none; }
 }
 
 /* ============================ responsive ============================ */
@@ -376,8 +485,12 @@ select:focus-visible, textarea:focus-visible {
   .kontaktu-tinklelis { grid-template-columns: 1fr; gap: 2rem; }
 }
 
+@media (max-width: 900px) and (min-width: 701px) {
+  .straipsniu-korteles { grid-template-columns: 1fr 1fr; }
+}
+
 @media (max-width: 700px) {
-  .korteles, .faktai { grid-template-columns: 1fr; }
+  .korteles, .faktai, .straipsniu-korteles { grid-template-columns: 1fr; }
   .hero { padding: 3.5rem 0 3rem; }
   .skirsnis { padding: 3.5rem 0; }
 

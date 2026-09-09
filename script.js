@@ -1,3 +1,6 @@
+// Pazymim, kad JS veikia: tik tada slepiamas turinys pries animacija
+document.documentElement.classList.add('js');
+
 // Mobilus meniu
 (function () {
   var mygtukas = document.getElementById('meniu-mygtukas');

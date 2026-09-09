@@ -5,12 +5,14 @@ Hostinama per GitHub Pages iš `main` šakos. Push į `main` iškart atnaujina s
 
 Failai:
 
-- `index.html` – pagrindinis puslapis (visas turinys jame)
-- `privatumo-politika.html` – privatumo politika
-- `styles.css` – visa išvaizda
-- `script.js` – mobilus meniu, animacijos, kontaktų forma
-- `assets/` – nuotraukos
-- `robots.txt`, `sitemap.xml` – SEO
+- `index.html` : pagrindinis puslapis (visas turinys jame)
+- `privatumo-politika.html` : privatumo politika
+- `styles.css` : visa išvaizda
+- `script.js` : mobilus meniu, animacijos, kontaktų forma
+- `straipsniai/` : SEO straipsniai (vaiko raida, kada kreiptis, kaip vyksta konsultacija)
+- `assets/` : nuotraukos
+- `404.html` : nerasto puslapio langas
+- `robots.txt`, `sitemap.xml` : SEO (pridėjus puslapį, papildyti sitemap)
 
 ## Kaip pakeisti placeholderius
 
