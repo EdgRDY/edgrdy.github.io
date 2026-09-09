@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 520" role="img" aria-label="Portreto vieta">
+  <rect width="420" height="520" fill="#e9e2d6"/>
+  <g fill="#c9bda9">
+    <circle cx="210" cy="190" r="78"/>
+    <path d="M210 290c-92 0-150 62-150 150v80h300v-80c0-88-58-150-150-150z"/>
+  </g>
+</svg>
