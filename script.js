@@ -1,25 +1,3 @@
-// Dizaino perjungiklis (tik perziurai)
-(function () {
-  var mygtukai = document.querySelectorAll('.dizaino-perjungiklis button');
-  var issaugotas = null;
-  try { issaugotas = localStorage.getItem('dizainas'); } catch (e) {}
-  if (issaugotas === 'a' || issaugotas === 'b' || issaugotas === 'c') {
-    nustatyti(issaugotas);
-  }
-  mygtukai.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      nustatyti(btn.dataset.variantas);
-      try { localStorage.setItem('dizainas', btn.dataset.variantas); } catch (e) {}
-    });
-  });
-  function nustatyti(v) {
-    document.body.dataset.dizainas = v;
-    mygtukai.forEach(function (b) {
-      b.classList.toggle('aktyvus', b.dataset.variantas === v);
-    });
-  }
-})();
-
 // Mobilus meniu
 (function () {
   var mygtukas = document.getElementById('meniu-mygtukas');
@@ -63,15 +41,20 @@
   forma.addEventListener('submit', function (e) {
     var endpoint = forma.getAttribute('action');
     if (!endpoint || endpoint === '#') {
-      // Perziuros rezimas: endpoint dar nesukonfiguruotas
+      // Endpoint dar nesukonfiguruotas (zr. README)
       e.preventDefault();
-      zinia.textContent = 'Peržiūros režimas: formos siuntimas bus įjungtas vėliau.';
-      zinia.className = 'formos-zinia sekme';
+      zinia.textContent = 'Registracija internetu dar ruošiama. Parašykite el. paštu arba paskambinkite.';
+      zinia.className = 'formos-zinia klaida';
       return;
     }
     if (forma.querySelector('[name="svetaine"]').value) {
       e.preventDefault();
-      return; // honeypot
+      return; // honeypot: botas uzpilde pasleptaji lauka
+    }
+    if (!forma.checkValidity()) {
+      forma.reportValidity();
+      e.preventDefault();
+      return;
     }
     e.preventDefault();
     var duomenys = new FormData(forma);

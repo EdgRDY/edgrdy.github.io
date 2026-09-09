@@ -1,29 +1,76 @@
 <!doctype html>
 <!--
-  DIZAINO PERŽIŪRA. Trys dizaino variantai perjungiami mygtukais apačioje dešinėje:
-  A = Ramus editorial (smėlis + dulsva žalia, Source Serif 4 + Source Sans 3)
-  B = Šiltas (kreminė + terakota, Lora + Inter)
-  C = Modernus minimalizmas (balta + tamsi žalia, Fraunces + Inter)
-  Turinys su placeholderiais, tekstai bus keičiami išsirinkus dizainą.
+  ============================================================
+  PLACEHOLDERIAI, kuriuos reikia pakeisti tikrais duomenimis.
+  Ieškok šių reikšmių visame faile (ir privatumo-politika.html,
+  sitemap.xml, robots.txt) ir pakeisk:
+
+    Vardė Pavardė            -> {{VARDAS_PAVARDE}} tikras vardas ir pavardė
+    +370 600 00000           -> {{TELEFONAS}} (nuorodose formatas +37060000000)
+    vardas@pastas.lt         -> {{EL_PASTAS}}
+    Kabineto g. 1, Vilnius   -> {{ADRESAS}}
+    action="#"               -> {{FORMOS_ENDPOINT}} formos POST adresas (žr. README)
+    https://edgrdy.github.io -> {{DOMENAS}} kai bus nupirktas domenas
+    "Apie atšaukimą..."      -> {{ATSAUKIMO_TAISYKLES}} skiltyje „Atšaukimas“
+
+  Nuotrauka: pakeisk assets/portretas.svg tikra nuotrauka (žr. README).
+  „Apie mane“ tekstą Fausta gali perrašyti savais žodžiais, jis skiltyje id="apie".
+  ============================================================
 -->
 <html lang="lt">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vardė Pavardė | Psichologė Vilniuje</title>
-  <meta name="description" content="Psichologinės konsultacijos vaikams ir suaugusiems Vilniuje ir nuotoliniu būdu. Kognityvinė ir elgesio terapija.">
+  <meta name="description" content="Psichologinės konsultacijos vaikams ir suaugusiems Vilniuje ir nuotoliniu būdu. Kognityvinė ir elgesio terapija. Registracija konsultacijai.">
+  <meta name="theme-color" content="#fcfbf9">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vardė Pavardė | Psichologė Vilniuje">
+  <meta property="og:description" content="Psichologinės konsultacijos vaikams ir suaugusiems Vilniuje ir nuotoliniu būdu.">
+  <meta property="og:url" content="https://edgrdy.github.io/">
+  <meta property="og:image" content="https://edgrdy.github.io/assets/portretas.svg">
+  <meta property="og:locale" content="lt_LT">
+
+  <link rel="canonical" href="https://edgrdy.github.io/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Source+Sans+3:wght@400;600&family=Lora:wght@500;600&family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%236b8f71'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%232f5d50'/></svg>">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Psychologist",
+    "name": "Vardė Pavardė",
+    "description": "Psichologinės konsultacijos vaikams ir suaugusiems Vilniuje ir nuotoliniu būdu. Kognityvinė ir elgesio terapija.",
+    "url": "https://edgrdy.github.io/",
+    "telephone": "+37060000000",
+    "email": "vardas@pastas.lt",
+    "priceRange": "60 EUR",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kabineto g. 1",
+      "addressLocality": "Vilnius",
+      "addressCountry": "LT"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "14:00",
+      "closes": "17:00"
+    }]
+  }
+  </script>
 </head>
-<body data-dizainas="a">
+<body>
+  <a class="praleisti" href="#pradzia">Pereiti prie turinio</a>
 
   <header class="virsus">
     <div class="virsus-vidus">
       <a class="logo" href="#pradzia">Vardė Pavardė</a>
-      <nav class="meniu" id="meniu">
+      <nav class="meniu" id="meniu" aria-label="Pagrindinis meniu">
         <a href="#apie">Apie mane</a>
         <a href="#su-kuo">Su kuo dirbu</a>
         <a href="#konsultacija">Konsultacija</a>
@@ -31,14 +78,13 @@
       </nav>
       <a class="btn btn-pirminis virsus-cta" href="#kontaktai">Registruotis</a>
       <button class="meniu-mygtukas" id="meniu-mygtukas" aria-expanded="false" aria-controls="meniu" aria-label="Meniu">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
   </header>
 
   <main id="pradzia">
 
-    <!-- ======================= HERO ======================= -->
     <section class="hero">
       <div class="konteineris hero-tinklelis">
         <div class="hero-tekstas atsiranda">
@@ -58,11 +104,11 @@
       </div>
     </section>
 
-    <!-- ======================= APIE ======================= -->
-    <section id="apie" class="skirsnis">
+    <section id="apie" class="skirsnis skirsnis-fonas">
       <div class="konteineris siauras">
         <p class="skirsnio-nr">01</p>
         <h2 class="atsiranda">Apie mane</h2>
+        <!-- Šį tekstą Fausta gali perrašyti savais žodžiais -->
         <div class="apie-tekstas atsiranda">
           <p>
             Esu psichologė. Klinikinės psichologijos magistro studijas baigiau Vilniaus universitete
@@ -80,7 +126,6 @@
       </div>
     </section>
 
-    <!-- ======================= SU KUO DIRBU ======================= -->
     <section id="su-kuo" class="skirsnis skirsnis-fonas">
       <div class="konteineris">
         <p class="skirsnio-nr">02</p>
@@ -114,8 +159,7 @@
       </div>
     </section>
 
-    <!-- ======================= KAIP VYKSTA ======================= -->
-    <section id="konsultacija" class="skirsnis">
+    <section id="konsultacija" class="skirsnis skirsnis-fonas">
       <div class="konteineris">
         <p class="skirsnio-nr">03</p>
         <h2 class="atsiranda">Kaip vyksta konsultacija</h2>
@@ -142,7 +186,7 @@
           </li>
           <li class="atsiranda">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg>
-            <div><h3>Atšaukimas</h3><p>Apie negalėjimą atvykti prašome pranešti iš anksto. (Tikslios taisyklės bus įrašytos.)</p></div>
+            <div><h3>Atšaukimas</h3><p>Apie atšaukimą ar laiko keitimą prašome pranešti iš anksto. Tikslios taisyklės bus paskelbtos čia.</p></div>
           </li>
           <li class="atsiranda faktas-platus">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 1 1 8 0v3"/></svg>
@@ -152,7 +196,6 @@
       </div>
     </section>
 
-    <!-- ======================= KONTAKTAI ======================= -->
     <section id="kontaktai" class="skirsnis skirsnis-fonas">
       <div class="konteineris">
         <p class="skirsnio-nr">04</p>
@@ -213,14 +256,6 @@
       <p><a href="privatumo-politika.html">Privatumo politika</a> · <span id="metai">2026</span></p>
     </div>
   </footer>
-
-  <!-- Dizaino perjungiklis (tik peržiūrai, galutinėje versijoje bus pašalintas) -->
-  <div class="dizaino-perjungiklis" role="group" aria-label="Dizaino variantas">
-    <span>Dizainas</span>
-    <button type="button" data-variantas="a" class="aktyvus">A</button>
-    <button type="button" data-variantas="b">B</button>
-    <button type="button" data-variantas="c">C</button>
-  </div>
 
   <script src="script.js"></script>
 </body>
