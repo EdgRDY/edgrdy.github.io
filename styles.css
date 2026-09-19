@@ -309,23 +309,6 @@ select:focus-visible, textarea:focus-visible {
 
 .skirsnis-alt + .skirsnis, .juosta-cta + .skirsnis { border-top: 0; }
 
-.skirsnio-nr {
-  font-family: var(--font-antrastes);
-  color: var(--akcentas-tamsus);
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-.skirsnio-nr::before {
-  content: "";
-  width: 28px;
-  height: 1px;
-  background: var(--akcentas);
-}
-
 .skirsnis h2 {
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   margin-bottom: 2rem;
