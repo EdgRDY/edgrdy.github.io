@@ -48,15 +48,25 @@
   --tekstas-svelnus: #5c645f;
   --akcentas: #2f5d50;
   --akcentas-tamsus: #234a3f;
+  --akcentas-svelnus: #e6eeea;
   --linija: #e5e4df;
+  --linija-tamsi: #d5d7d0;
   --kortele: #ffffff;
+  --r-sm: 8px;
+  --r-md: 10px;
+  --r-lg: 18px;
+  --seselis: 0 1px 2px rgba(35, 41, 38, 0.04), 0 12px 32px -16px rgba(35, 41, 38, 0.16);
+  --seselis-kilimas: 0 2px 4px rgba(35, 41, 38, 0.05), 0 20px 44px -18px rgba(35, 41, 38, 0.24);
   --font-antrastes: "Fraunces", Georgia, serif;
   --font-tekstas: "Inter", "Segoe UI", sans-serif;
 }
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* kad prilipęs viršus neuždengtų skirsnio antraštės */
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -118,8 +128,12 @@ select:focus-visible, textarea:focus-visible {
   z-index: 50;
   background: color-mix(in srgb, var(--fonas) 88%, transparent);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--linija);
+  transition: box-shadow var(--greitis) ease;
 }
+
+.virsus.slenka { box-shadow: 0 6px 24px -16px rgba(35, 41, 38, 0.3); }
 
 .virsus-vidus {
   max-width: var(--konteineris);
@@ -142,18 +156,37 @@ select:focus-visible, textarea:focus-visible {
 .meniu { display: flex; gap: 1.4rem; }
 
 .meniu a {
+  position: relative;
   color: var(--tekstas-svelnus);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
+  transition: color var(--greitis) ease;
 }
 
-.meniu a:hover { color: var(--akcentas-tamsus); }
+.meniu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--akcentas);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--greitis) ease;
+}
+
+.meniu a:hover, .meniu a.aktyvus { color: var(--akcentas-tamsus); }
+
+.meniu a:hover::after, .meniu a.aktyvus::after { transform: scaleX(1); }
 
 .meniu-mygtukas {
   display: none;
   background: none;
-  border: 1px solid var(--linija);
+  border: 1px solid var(--linija-tamsi);
+  border-radius: var(--r-sm);
   color: var(--tekstas);
   padding: 0.45rem 0.55rem;
   cursor: pointer;
@@ -163,20 +196,33 @@ select:focus-visible, textarea:focus-visible {
 
 .btn {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.55rem;
   font-size: 0.98rem;
   font-weight: 600;
   text-decoration: none;
   border: 1px solid transparent;
+  border-radius: var(--r-md);
   cursor: pointer;
   font-family: var(--font-tekstas);
   transition: background var(--greitis) ease, color var(--greitis) ease,
-              border-color var(--greitis) ease;
+              border-color var(--greitis) ease, transform var(--greitis) ease,
+              box-shadow var(--greitis) ease;
 }
 
-.btn-pirminis { background: var(--akcentas); color: #fff; }
+.btn:hover { transform: translateY(-1px); }
 
-.btn-pirminis:hover { background: var(--akcentas-tamsus); }
+.btn:active { transform: translateY(0); }
+
+.btn-pirminis {
+  background: var(--akcentas);
+  color: #fff;
+  box-shadow: 0 8px 20px -12px rgba(47, 93, 80, 0.6);
+}
+
+.btn-pirminis:hover {
+  background: var(--akcentas-tamsus);
+  box-shadow: 0 12px 26px -12px rgba(47, 93, 80, 0.7);
+}
 
 .btn-antrinis {
   background: transparent;
@@ -184,9 +230,17 @@ select:focus-visible, textarea:focus-visible {
   border-color: var(--akcentas);
 }
 
-.btn-antrinis:hover { background: var(--fonas-2); }
+.btn-antrinis:hover { background: var(--akcentas-svelnus); }
 
-.virsus-cta { padding: 0.5rem 1.1rem; font-size: 0.9rem; }
+.btn-sviesus {
+  background: #fff;
+  color: var(--akcentas-tamsus);
+  box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.5);
+}
+
+.btn-sviesus:hover { background: var(--fonas); }
+
+.virsus-cta { padding: 0.55rem 1.1rem; font-size: 0.9rem; }
 
 /* ============================ hero ============================ */
 
@@ -222,25 +276,54 @@ select:focus-visible, textarea:focus-visible {
 
 .hero-mygtukai { display: flex; gap: 0.9rem; flex-wrap: wrap; }
 
+/* Portretas arkos formos, už jo plona žalia arka su poslinkiu */
+.hero-portretas { position: relative; }
+
+.hero-portretas::before {
+  content: "";
+  position: absolute;
+  inset: 16px -16px -16px 16px;
+  border: 1px solid var(--akcentas);
+  border-radius: 50% 50% 20px 20px / 40% 40% 20px 20px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
 .portreto-remas {
+  position: relative;
   overflow: hidden;
   background: var(--fonas-2);
-  border: 1px solid var(--linija);
+  border-radius: 50% 50% 20px 20px / 40% 40% 20px 20px;
+  box-shadow: var(--seselis);
 }
 
 .portreto-remas img { display: block; width: 100%; height: auto; }
 
 /* ============================ skirsniai ============================ */
 
-.skirsnis { padding: 5rem 0; }
+.skirsnis { padding: 5.5rem 0; }
 
 .skirsnis-fonas { border-top: 1px solid var(--linija); }
 
+.skirsnis-alt { background: var(--fonas-2); border-top: 0; }
+
+.skirsnis-alt + .skirsnis, .juosta-cta + .skirsnis { border-top: 0; }
+
 .skirsnio-nr {
   font-family: var(--font-antrastes);
-  color: var(--tekstas-svelnus);
+  color: var(--akcentas-tamsus);
   font-size: 0.95rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.skirsnio-nr::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--akcentas);
 }
 
 .skirsnis h2 {
@@ -261,18 +344,39 @@ select:focus-visible, textarea:focus-visible {
 .kortele {
   background: var(--kortele);
   border: 1px solid var(--linija);
-  padding: 1.8rem 2rem;
+  border-radius: var(--r-lg);
+  box-shadow: var(--seselis);
+  padding: 2rem 2.2rem;
 }
 
 .kortele h3 { font-size: 1.3rem; margin-bottom: 0.9rem; }
 
-.kortele ul { margin: 0; padding-left: 1.1rem; color: var(--tekstas-svelnus); }
-
-.kortele li { margin-bottom: 0.45rem; }
-
-.kortele li::marker { color: var(--akcentas); }
-
 .korteliu-pastaba { margin-top: 1.6rem; color: var(--tekstas-svelnus); }
+
+/* Žali taškai vietoj įprastų sąrašo ženklų */
+.kortele ul, .straipsnis ul, .teises {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--tekstas-svelnus);
+}
+
+.kortele li, .straipsnis li, .teises li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.45rem;
+}
+
+.kortele li::before, .straipsnis li::before, .teises li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.66em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--akcentas);
+}
 
 /* ============================ faktai ============================ */
 
@@ -282,29 +386,70 @@ select:focus-visible, textarea:focus-visible {
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.6rem 2.5rem;
+  gap: 1.8rem 2.5rem;
 }
 
 .faktai li { display: flex; gap: 1rem; align-items: flex-start; }
 
-.faktai svg {
-  width: 26px;
-  height: 26px;
+.faktai svg, .kontaktu-sarasas svg {
+  width: 42px;
+  height: 42px;
+  padding: 10px;
   flex: none;
   color: var(--akcentas);
-  margin-top: 0.15rem;
+  background: var(--akcentas-svelnus);
+  border-radius: 12px;
 }
 
 .faktai h3 {
   font-size: 1.05rem;
-  margin-bottom: 0.25rem;
+  margin: 0.45rem 0 0.25rem;
   font-family: var(--font-tekstas);
   font-weight: 600;
 }
 
 .faktai p { margin: 0; color: var(--tekstas-svelnus); font-size: 0.98rem; }
 
-.faktas-platus { grid-column: 1 / -1; }
+/* ============================ žalia juosta ============================ */
+
+.juosta-cta {
+  position: relative;
+  overflow: hidden;
+  background: var(--akcentas);
+  color: #fff;
+  padding: 4.5rem 0;
+}
+
+.juosta-cta::before {
+  content: "";
+  position: absolute;
+  right: -140px;
+  top: -160px;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.juosta-vidus {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.juosta-tekstas {
+  font-family: var(--font-antrastes);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  max-width: 34ch;
+  margin: 0;
+}
+
+.juosta-vidus .btn { flex: none; }
 
 /* ============================ kontaktai ============================ */
 
@@ -315,29 +460,58 @@ select:focus-visible, textarea:focus-visible {
   align-items: start;
 }
 
-.kontaktu-sarasas { list-style: none; margin: 1.4rem 0 0; padding: 0; }
+.kontaktu-sarasas { list-style: none; margin: 1.6rem 0 0; padding: 0; }
 
 .kontaktu-sarasas li {
-  margin-bottom: 1.1rem;
-  padding-bottom: 1.1rem;
-  border-bottom: 1px solid var(--linija);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
 }
 
+.kontaktu-sarasas li > a, .kontaktu-sarasas li > div { padding-top: 0.55rem; }
+
 .kontaktu-sarasas a { font-weight: 600; }
+
+.kontaktu-sarasas .zemelapis { font-weight: 500; font-size: 0.95rem; }
+
+.kontaktu-pastaba {
+  margin-top: 1.8rem;
+  padding: 1.3rem 1.5rem;
+  background: var(--akcentas-svelnus);
+  border-radius: var(--r-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+  font-size: 0.95rem;
+  color: var(--tekstas-svelnus);
+}
+
+.kontaktu-pastaba p { margin: 0; }
+
+.kontaktu-pastaba strong {
+  display: block;
+  color: var(--tekstas);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
 
 .forma {
   background: var(--kortele);
   border: 1px solid var(--linija);
-  padding: 1.8rem 2rem 2rem;
+  border-radius: var(--r-lg);
+  box-shadow: var(--seselis);
+  padding: 2rem 2.2rem 2.2rem;
 }
 
-.laukas { margin-bottom: 1.1rem; }
+.laukas { margin-bottom: 1.15rem; }
 
 .laukas label {
   display: block;
   font-size: 0.92rem;
   font-weight: 600;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
 }
 
 .laukas input[type="text"],
@@ -345,29 +519,87 @@ select:focus-visible, textarea:focus-visible {
 .laukas select,
 .laukas textarea {
   width: 100%;
-  padding: 0.65rem 0.8rem;
-  border: 1px solid var(--linija);
-  background: var(--fonas);
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--linija-tamsi);
+  border-radius: var(--r-sm);
+  background-color: var(--fonas);
   color: var(--tekstas);
   font: inherit;
   font-size: 0.98rem;
+  transition: border-color var(--greitis) ease, box-shadow var(--greitis) ease,
+              background-color var(--greitis) ease;
+}
+
+.laukas textarea { resize: vertical; min-height: 120px; }
+
+.laukas select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.6rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232f5d50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+.laukas input:hover, .laukas select:hover, .laukas textarea:hover {
+  border-color: #b9bdb5;
 }
 
 .laukas input:focus, .laukas select:focus, .laukas textarea:focus {
+  outline: none;
   border-color: var(--akcentas);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(47, 93, 80, 0.14);
 }
 
 .medus { position: absolute; left: -9999px; }
 
 .sutikimas {
   display: flex;
-  gap: 0.6rem;
+  gap: 0.7rem;
   align-items: flex-start;
 }
 
-.sutikimas input { margin-top: 0.3rem; }
+.sutikimas input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 0.2rem 0 0;
+  border: 1.5px solid var(--linija-tamsi);
+  border-radius: 6px;
+  background: #fff;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: background var(--greitis) ease, border-color var(--greitis) ease;
+}
 
-.sutikimas label { font-weight: 400; font-size: 0.9rem; color: var(--tekstas-svelnus); }
+.sutikimas input[type="checkbox"]::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  background: #fff;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transition: transform 140ms ease;
+}
+
+.sutikimas input[type="checkbox"]:hover { border-color: var(--akcentas); }
+
+.sutikimas input[type="checkbox"]:checked {
+  background: var(--akcentas);
+  border-color: var(--akcentas);
+}
+
+.sutikimas input[type="checkbox"]:checked::before { transform: scale(1); }
+
+.sutikimas label { font-weight: 400; font-size: 0.9rem; color: var(--tekstas-svelnus); cursor: pointer; }
+
+.forma .btn { margin-top: 0.4rem; padding: 0.85rem 1.7rem; }
 
 .formos-zinia { margin: 0.9rem 0 0; font-size: 0.95rem; font-weight: 600; }
 
@@ -387,16 +619,27 @@ select:focus-visible, textarea:focus-visible {
 }
 
 .straipsniu-korteles article {
+  height: 100%;
   background: var(--kortele);
   border: 1px solid var(--linija);
-  padding: 1.6rem 1.8rem;
+  border-radius: var(--r-lg);
+  box-shadow: var(--seselis);
+  padding: 1.8rem 1.9rem;
   display: flex;
   flex-direction: column;
+  transition: transform var(--greitis) ease, box-shadow var(--greitis) ease,
+              border-color var(--greitis) ease;
+}
+
+.straipsniu-korteles article:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--seselis-kilimas);
+  border-color: color-mix(in srgb, var(--akcentas) 30%, var(--linija));
 }
 
 .straipsniu-korteles h3 { font-size: 1.2rem; margin-bottom: 0.6rem; }
 
-.straipsniu-korteles h3 a { color: var(--tekstas); text-decoration: none; }
+.straipsniu-korteles h3 a { color: var(--tekstas); text-decoration: none; transition: color var(--greitis) ease; }
 
 .straipsniu-korteles h3 a:hover { color: var(--akcentas-tamsus); }
 
@@ -412,7 +655,14 @@ select:focus-visible, textarea:focus-visible {
   text-decoration: none;
 }
 
-.straipsniu-korteles .skaityti:hover { text-decoration: underline; }
+.straipsniu-korteles .skaityti::after {
+  content: "\2192";
+  display: inline-block;
+  margin-left: 0.35em;
+  transition: transform var(--greitis) ease;
+}
+
+.straipsniu-korteles article:hover .skaityti::after { transform: translateX(4px); }
 
 /* ============================ DUK ============================ */
 
@@ -422,7 +672,7 @@ select:focus-visible, textarea:focus-visible {
 
 .duk summary {
   cursor: pointer;
-  padding: 1.1rem 0;
+  padding: 1.15rem 0;
   font-weight: 600;
   font-size: 1.05rem;
   list-style: none;
@@ -430,26 +680,46 @@ select:focus-visible, textarea:focus-visible {
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  transition: color var(--greitis) ease;
 }
 
 .duk summary::-webkit-details-marker { display: none; }
 
+.duk summary:hover { color: var(--akcentas-tamsus); }
+
 .duk summary::after {
   content: "+";
   font-family: var(--font-antrastes);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--akcentas);
   flex: none;
   line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  background: var(--akcentas-svelnus);
+  transition: background var(--greitis) ease, color var(--greitis) ease;
 }
 
-.duk details[open] summary::after { content: "\2212"; }
+.duk details[open] summary::after {
+  content: "\2212";
+  background: var(--akcentas);
+  color: #fff;
+}
 
 .duk details[open] summary { color: var(--akcentas-tamsus); }
 
 .duk details p {
   margin: 0 0 1.1rem;
   color: var(--tekstas-svelnus);
+  animation: duk-atsiranda 260ms ease both;
+}
+
+@keyframes duk-atsiranda {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
 }
 
 /* ============================ straipsnio puslapis ============================ */
@@ -470,15 +740,13 @@ select:focus-visible, textarea:focus-visible {
   margin: 2.2rem 0 0.8rem;
 }
 
-.straipsnis ul { color: var(--tekstas-svelnus); padding-left: 1.2rem; }
-
-.straipsnis li { margin-bottom: 0.4rem; }
+.straipsnis ul { margin-bottom: 1rem; }
 
 .straipsnio-cta {
   margin-top: 2.5rem;
-  padding: 1.6rem 1.8rem;
-  background: var(--fonas-2);
-  border: 1px solid var(--linija);
+  padding: 1.8rem 2rem;
+  background: var(--akcentas-svelnus);
+  border-radius: var(--r-lg);
 }
 
 .straipsnio-cta p { margin: 0 0 1rem; }
@@ -506,14 +774,16 @@ select:focus-visible, textarea:focus-visible {
 /* Slepiama tik kai JS tikrai veikia (html.js), kitaip viskas matoma is karto */
 .js .atsiranda {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 500ms ease, transform 500ms ease;
+  transform: translateY(16px);
+  transition: opacity 600ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .js .atsiranda.matomas { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .js .atsiranda { opacity: 1; transform: none; transition: none; }
+  .btn, .straipsniu-korteles article, .meniu a::after { transition: none; }
+  .duk details p { animation: none; }
 }
 
 /* ============================ responsive ============================ */
@@ -522,6 +792,7 @@ select:focus-visible, textarea:focus-visible {
   .hero-tinklelis { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-portretas { order: -1; max-width: 320px; }
   .kontaktu-tinklelis { grid-template-columns: 1fr; gap: 2rem; }
+  .juosta-vidus { flex-direction: column; align-items: flex-start; gap: 1.8rem; }
 }
 
 @media (max-width: 900px) and (min-width: 701px) {
@@ -529,9 +800,12 @@ select:focus-visible, textarea:focus-visible {
 }
 
 @media (max-width: 700px) {
-  .korteles, .faktai, .straipsniu-korteles { grid-template-columns: 1fr; }
+  .korteles, .faktai, .straipsniu-korteles, .kontaktu-pastaba { grid-template-columns: 1fr; }
   .hero { padding: 3.5rem 0 3rem; }
   .skirsnis { padding: 3.5rem 0; }
+  .juosta-cta { padding: 3.5rem 0; }
+  .kortele { padding: 1.6rem 1.5rem; }
+  .forma { padding: 1.6rem 1.3rem 1.8rem; }
 
   .meniu {
     display: none;
@@ -543,12 +817,17 @@ select:focus-visible, textarea:focus-visible {
     gap: 0;
     background: var(--fonas);
     border-bottom: 1px solid var(--linija);
+    box-shadow: 0 16px 32px -20px rgba(35, 41, 38, 0.35);
     padding: 0.5rem 0;
   }
 
   .meniu.atidarytas { display: flex; }
 
   .meniu a { padding: 0.8rem 1.25rem; }
+
+  .meniu a::after { display: none; }
+
+  .meniu a.aktyvus { background: var(--akcentas-svelnus); }
 
   .meniu-mygtukas { display: inline-flex; }
 

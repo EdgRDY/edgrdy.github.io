@@ -18,6 +18,34 @@ document.documentElement.classList.add('js');
   });
 })();
 
+// Viršaus šešėlis, kai puslapis paslinktas
+(function () {
+  var virsus = document.querySelector('.virsus');
+  if (!virsus) return;
+  function tikrinti() { virsus.classList.toggle('slenka', window.scrollY > 8); }
+  window.addEventListener('scroll', tikrinti, { passive: true });
+  tikrinti();
+})();
+
+// Aktyvi meniu nuoroda pagal matomą skirsnį
+(function () {
+  var nuorodos = document.querySelectorAll('.meniu a[href^="#"]');
+  if (!nuorodos.length || !('IntersectionObserver' in window)) return;
+  var pagalId = {};
+  nuorodos.forEach(function (a) { pagalId[a.getAttribute('href').slice(1)] = a; });
+  var skirsniai = Object.keys(pagalId)
+    .map(function (id) { return document.getElementById(id); })
+    .filter(Boolean);
+  var stebetojas = new IntersectionObserver(function (irasai) {
+    irasai.forEach(function (irasas) {
+      if (!irasas.isIntersecting) return;
+      nuorodos.forEach(function (a) { a.classList.remove('aktyvus'); });
+      pagalId[irasas.target.id].classList.add('aktyvus');
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  skirsniai.forEach(function (s) { stebetojas.observe(s); });
+})();
+
 // Atsiradimo animacija
 (function () {
   var elementai = document.querySelectorAll('.atsiranda');
