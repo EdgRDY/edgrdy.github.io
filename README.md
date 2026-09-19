@@ -10,7 +10,8 @@ Failai:
 - `styles.css` : visa išvaizda
 - `script.js` : mobilus meniu, animacijos, kontaktų forma
 - `straipsniai/` : SEO straipsniai (vaiko raida, kada kreiptis, kaip vyksta konsultacija)
-- `assets/` : nuotraukos
+- `assets/` : nuotraukos, `og.jpg` (paveikslėlis, rodomas dalinantis nuoroda)
+- `assets/fonts/` : šriftai (Fraunces, Inter), laikomi čia, kad nereikėtų kreiptis į Google
 - `404.html` : nerasto puslapio langas
 - `robots.txt`, `sitemap.xml` : SEO (pridėjus puslapį, papildyti sitemap)
 
