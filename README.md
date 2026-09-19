@@ -14,21 +14,14 @@ Failai:
 - `404.html` : nerasto puslapio langas
 - `robots.txt`, `sitemap.xml` : SEO (pridėjus puslapį, papildyti sitemap)
 
-## Kaip pakeisti placeholderius
+## Kontaktiniai duomenys
 
-Visi keistini dalykai surašyti komentare `index.html` viršuje. Trumpai: visame projekte
-surask ir pakeisk šias reikšmes (Ctrl+Shift+F redaktoriuje):
-
-| Dabar | Pakeisti į |
-|---|---|
-| `Vardė Pavardė` | tikras vardas ir pavardė |
-| `+370 600 00000` ir `+37060000000` | tikras telefonas (antras variantas be tarpų, naudojamas `tel:` nuorodose ir JSON-LD) |
-| `vardas@pastas.lt` | tikras el. paštas |
-| `Kabineto g. 1, Vilnius` | kabineto adresas (taip pat žemėlapio nuorodoje, kur adresas užkoduotas URL) |
-| `https://edgrdy.github.io` | tikras domenas, kai bus nupirktas |
+Vardas, telefonas, el. paštas ir adresas jau įrašyti. Jei kas nors pasikeis, ieškok senos
+reikšmės visame projekte (Ctrl+Shift+F) ir pakeisk visur. Telefonas yra dviem formatais:
+`+370 629 73696` tekste ir `+37062973696` `tel:` nuorodose ir JSON-LD. Adresas yra ir
+žemėlapio nuorodoje, kur jis užkoduotas URL.
 
 Tekstą „Apie mane“ galima laisvai perrašyti, jis `index.html` skiltyje `id="apie"`.
-Atšaukimo taisyklės įrašomos skiltyje „Kaip vyksta konsultacija“ prie „Atšaukimas“.
 
 ## Kur įdėti nuotrauką
 
@@ -39,7 +32,7 @@ Atšaukimo taisyklės įrašomos skiltyje „Kaip vyksta konsultacija“ prie �
 ```html
 <picture>
   <source srcset="assets/portretas.webp" type="image/webp">
-  <img src="assets/portretas.jpg" alt="Psichologės Vardės Pavardės portretas"
+  <img src="assets/portretas.jpg" alt="Psichologės Faustos Rudko portretas"
        width="420" height="520" loading="lazy">
 </picture>
 ```
