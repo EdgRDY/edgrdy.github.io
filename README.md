@@ -19,8 +19,9 @@ Failai:
 
 Vardas, telefonas, el. paštas ir adresas jau įrašyti. Jei kas nors pasikeis, ieškok senos
 reikšmės visame projekte (Ctrl+Shift+F) ir pakeisk visur. Telefonas yra dviem formatais:
-`+370 629 73696` tekste ir `+37062973696` `tel:` nuorodose ir JSON-LD. Adresas yra ir
-žemėlapio nuorodoje, kur jis užkoduotas URL.
+`+370 629 73696` tekste ir `+37062973696` `tel:` nuorodose ir JSON-LD. Žemėlapio nuoroda
+rodo į Google Maps įrašą „Pasažas pas Juozapą“ (place ID `ChIJv_opVQWU3UYRWta9fDPZJ6I`), ne į adresą,
+nes pagal adresą Google rodo kitą to komplekso pastatą.
 
 Tekstą „Apie mane“ galima laisvai perrašyti, jis `index.html` skiltyje `id="apie"`. Po juo yra
 LinkedIn nuoroda ir Lietuvos psichologų sąjungos narystės ženkliukas (`assets/lps.png`).
