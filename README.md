@@ -59,10 +59,7 @@ Antispam: formoje yra paslėptas honeypot laukas `svetaine`, botų užpildytos u
 
 ## Domenas
 
-Kai bus nupirktas domenas:
-
-1. Repo Settings -> Pages -> Custom domain įrašyk domeną (susikurs `CNAME` failas).
-2. DNS: `CNAME` įrašas `www` -> `edgrdy.github.io` ir `A`/`ALIAS` įrašai apex domenui
-   į GitHub Pages IP (185.199.108.153, .109., .110., .111.).
-3. Pakeisk `https://edgrdy.github.io` į naują domeną: `index.html` (canonical, OG, JSON-LD),
-   `privatumo-politika.html` (canonical), `robots.txt`, `sitemap.xml`.
+Svetainė pasiekiama adresu https://fausta.rudko.lt. DNS valdomas Cloudflare (zona `rudko.lt`):
+`CNAME fausta -> edgrdy.github.io` be Cloudflare proxy (pilkas debesėlis), kitaip GitHub
+neišduoda HTTPS sertifikato. Failas `CNAME` repo šaknyje pasako GitHub Pages, koks domenas,
+jo netrinti. Senas adresas edgrdy.github.io automatiškai nukreipia į naująjį.
