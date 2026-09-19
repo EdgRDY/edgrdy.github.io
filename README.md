@@ -22,7 +22,11 @@ reikšmės visame projekte (Ctrl+Shift+F) ir pakeisk visur. Telefonas yra dviem 
 `+370 629 73696` tekste ir `+37062973696` `tel:` nuorodose ir JSON-LD. Adresas yra ir
 žemėlapio nuorodoje, kur jis užkoduotas URL.
 
-Tekstą „Apie mane“ galima laisvai perrašyti, jis `index.html` skiltyje `id="apie"`.
+Tekstą „Apie mane“ galima laisvai perrašyti, jis `index.html` skiltyje `id="apie"`. Po juo yra
+LinkedIn nuoroda ir Lietuvos psichologų sąjungos narystės ženkliukas (`assets/lps.png`).
+
+Pakeitus `styles.css` ar `script.js`, visuose HTML failuose pakelk `?v=...` numerį prie jų
+nuorodų, kitaip naršyklės iki 10 min rodys seną versiją.
 
 ## Kur įdėti nuotrauką
 

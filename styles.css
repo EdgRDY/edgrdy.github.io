@@ -141,7 +141,7 @@ select:focus-visible, textarea:focus-visible {
   padding: 0.8rem 1.25rem;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .logo {
@@ -181,6 +181,24 @@ select:focus-visible, textarea:focus-visible {
 .meniu a:hover, .meniu a.aktyvus { color: var(--akcentas-tamsus); }
 
 .meniu a:hover::after, .meniu a.aktyvus::after { transform: scaleX(1); }
+
+.virsus-ikonos { display: flex; gap: 0.45rem; }
+
+.virsus-ikona {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--akcentas-svelnus);
+  color: var(--akcentas-tamsus);
+  transition: background var(--greitis) ease, color var(--greitis) ease, transform var(--greitis) ease;
+}
+
+.virsus-ikona svg { width: 18px; height: 18px; }
+
+.virsus-ikona:hover { background: var(--akcentas); color: #fff; transform: translateY(-1px); }
 
 .meniu-mygtukas {
   display: none;
@@ -315,6 +333,37 @@ select:focus-visible, textarea:focus-visible {
 }
 
 .apie-tekstas p { font-size: 1.1rem; }
+
+/* LinkedIn ir LPS narystės ženkliukai po „Apie mane“ */
+.apie-zenklai { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.8rem; }
+
+.zenklas {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 1.1rem 0.5rem 0.8rem;
+  background: var(--kortele);
+  border: 1px solid var(--linija);
+  border-radius: 999px;
+  box-shadow: var(--seselis);
+  color: var(--tekstas);
+  text-decoration: none;
+  font-size: 0.93rem;
+  font-weight: 500;
+  transition: transform var(--greitis) ease, box-shadow var(--greitis) ease, border-color var(--greitis) ease;
+}
+
+.zenklas:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--seselis-kilimas);
+  border-color: color-mix(in srgb, var(--akcentas) 30%, var(--linija));
+}
+
+.zenklas-linkedin { color: #0a66c2; flex: none; }
+
+.zenklas img { display: block; height: 30px; width: auto; }
+
+.zenklas-skirtukas { width: 1px; height: 22px; background: var(--linija-tamsi); }
 
 /* ============================ kortelės ============================ */
 
@@ -460,7 +509,7 @@ select:focus-visible, textarea:focus-visible {
 .kontaktu-sarasas .zemelapis { font-weight: 500; font-size: 0.95rem; }
 
 .kontaktu-pastaba {
-  margin-top: 1.8rem;
+  margin: 1.8rem 0 0;
   padding: 1.3rem 1.5rem;
   background: var(--akcentas-svelnus);
   border-radius: var(--r-lg);
@@ -471,14 +520,9 @@ select:focus-visible, textarea:focus-visible {
   color: var(--tekstas-svelnus);
 }
 
-.kontaktu-pastaba p { margin: 0; }
+.kontaktu-pastaba dt { color: var(--tekstas); font-weight: 600; margin-bottom: 0.15rem; }
 
-.kontaktu-pastaba strong {
-  display: block;
-  color: var(--tekstas);
-  font-weight: 600;
-  margin-bottom: 0.15rem;
-}
+.kontaktu-pastaba dd { margin: 0; }
 
 .forma {
   background: var(--kortele);
@@ -765,7 +809,7 @@ select:focus-visible, textarea:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .js .atsiranda { opacity: 1; transform: none; transition: none; }
-  .btn, .straipsniu-korteles article, .meniu a::after { transition: none; }
+  .btn, .straipsniu-korteles article, .meniu a::after, .zenklas, .virsus-ikona { transition: none; }
   .duk details p { animation: none; }
 }
 
@@ -813,6 +857,10 @@ select:focus-visible, textarea:focus-visible {
   .meniu a.aktyvus { background: var(--akcentas-svelnus); }
 
   .meniu-mygtukas { display: inline-flex; }
+
+  .virsus-vidus { gap: 0.6rem; }
+
+  .virsus-ikona { width: 36px; height: 36px; }
 
   .virsus-cta { display: none; }
 }
