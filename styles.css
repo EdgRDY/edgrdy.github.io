@@ -442,6 +442,8 @@ select:focus-visible, textarea:focus-visible {
 
 .faktai p { margin: 0; color: var(--tekstas-svelnus); font-size: 0.98rem; }
 
+.faktas-platus { grid-column: 1 / -1; }
+
 /* ============================ žalia juosta ============================ */
 
 .juosta-cta {
