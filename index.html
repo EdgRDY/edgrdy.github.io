@@ -21,8 +21,11 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="canonical" href="https://fausta.rudko.lt/">
+  <link rel="preload" as="image" type="image/webp" imagesrcset="assets/portretas-380.webp 380w, assets/portretas-640.webp 640w, assets/portretas.webp 754w" imagesizes="(max-width: 900px) 320px, 420px">
   <link rel="stylesheet" href="styles.css?v=20260922b">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%232f5d50'/></svg>">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 
   <script type="application/ld+json">
   {
@@ -99,7 +102,10 @@
         </div>
         <div class="hero-portretas atsiranda">
           <div class="portreto-remas">
-            <img src="assets/portretas.jpg" alt="Psichologė Fausta Rudko" width="754" height="942" fetchpriority="high">
+            <picture>
+              <source type="image/webp" srcset="assets/portretas-380.webp 380w, assets/portretas-640.webp 640w, assets/portretas.webp 754w" sizes="(max-width: 900px) 320px, 420px">
+              <img src="assets/portretas.jpg" srcset="assets/portretas-380.jpg 380w, assets/portretas-640.jpg 640w, assets/portretas.jpg 754w" sizes="(max-width: 900px) 320px, 420px" alt="Psichologė Fausta Rudko" width="754" height="942" fetchpriority="high">
+            </picture>
           </div>
         </div>
       </div>
