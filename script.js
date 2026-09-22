@@ -72,13 +72,12 @@ document.documentElement.classList.add('js');
   forma.addEventListener('submit', function (e) {
     var endpoint = forma.getAttribute('action');
     if (!endpoint || endpoint === '#') {
-      // Endpoint dar nesukonfiguruotas (zr. README)
       e.preventDefault();
       zinia.textContent = 'Registracija internetu dar ruošiama. Parašykite el. paštu arba paskambinkite.';
       zinia.className = 'formos-zinia klaida';
       return;
     }
-    if (forma.querySelector('[name="svetaine"]').value) {
+    if (forma.querySelector('[name="_gotcha"]').value) {
       e.preventDefault();
       return; // honeypot: botas uzpilde pasleptaji lauka
     }
@@ -89,6 +88,9 @@ document.documentElement.classList.add('js');
     }
     e.preventDefault();
     var duomenys = new FormData(forma);
+    duomenys.delete('_next'); // per JS perkrovimo nereikia, padėka rodoma čia pat
+    var kontaktas = duomenys.get('Telefonas arba el. paštas') || '';
+    if (kontaktas.indexOf('@') > 0) duomenys.append('_replyto', kontaktas.trim()); // kad Fausta galėtų iškart atsakyti
     fetch(endpoint, {
       method: 'POST',
       body: duomenys,

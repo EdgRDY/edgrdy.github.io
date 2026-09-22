@@ -20,7 +20,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="canonical" href="https://fausta.rudko.lt/">
-  <link rel="stylesheet" href="styles.css?v=20260922a">
+  <link rel="stylesheet" href="styles.css?v=20260922b">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%232f5d50'/></svg>">
 
   <script type="application/ld+json">
@@ -416,33 +416,35 @@
               <div><dt>Forma</dt><dd>Gyvai arba nuotoliniu būdu</dd></div>
             </dl>
           </div>
-          <form class="forma atsiranda" method="post" action="#" novalidate>
+          <form class="forma atsiranda" method="post" action="https://formspree.io/f/xjykwqyv" novalidate>
+            <input type="hidden" name="_subject" value="Nauja užklausa iš fausta.rudko.lt">
+            <input type="hidden" name="_next" value="https://fausta.rudko.lt/aciu.html">
             <div class="laukas">
               <label for="f-vardas">Vardas</label>
-              <input id="f-vardas" name="vardas" type="text" autocomplete="name" required>
+              <input id="f-vardas" name="Vardas" type="text" autocomplete="name" required>
             </div>
             <div class="laukas">
               <label for="f-kontaktas">Telefonas arba el. paštas</label>
-              <input id="f-kontaktas" name="kontaktas" type="text" autocomplete="tel" required>
+              <input id="f-kontaktas" name="Telefonas arba el. paštas" type="text" autocomplete="tel" required>
             </div>
             <div class="laukas">
               <label for="f-kam">Kam konsultacija</label>
-              <select id="f-kam" name="kam">
-                <option value="vaikui">Vaikui</option>
-                <option value="sau">Sau</option>
-                <option value="nezinau">Dar nežinau</option>
+              <select id="f-kam" name="Kam konsultacija">
+                <option value="Vaikui">Vaikui</option>
+                <option value="Sau">Sau</option>
+                <option value="Dar nežinau">Dar nežinau</option>
               </select>
             </div>
             <div class="laukas">
               <label for="f-zinute">Žinutė</label>
-              <textarea id="f-zinute" name="zinute" rows="4"></textarea>
+              <textarea id="f-zinute" name="Žinutė" rows="4"></textarea>
             </div>
             <div class="laukas medus" aria-hidden="true">
               <label for="f-svetaine">Svetainė</label>
-              <input id="f-svetaine" name="svetaine" type="text" tabindex="-1" autocomplete="off">
+              <input id="f-svetaine" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
             </div>
             <div class="laukas sutikimas">
-              <input id="f-sutikimas" name="sutikimas" type="checkbox" required>
+              <input id="f-sutikimas" name="Sutikimas su privatumo politika" type="checkbox" value="Taip" required>
               <label for="f-sutikimas">Sutinku, kad pateikti duomenys būtų naudojami atsakyti į mano užklausą (<a href="privatumo-politika.html">privatumo politika</a>).</label>
             </div>
             <button class="btn btn-pirminis" type="submit">Siųsti užklausą</button>
@@ -461,6 +463,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=20260922a"></script>
+  <script src="script.js?v=20260922b"></script>
 </body>
 </html>

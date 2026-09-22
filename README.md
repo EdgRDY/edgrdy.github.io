@@ -35,18 +35,13 @@ Portretas yra `assets/portretas.jpg` (754x942, santykis 4:5), dalinimosi
 paveikslėlis `assets/og.jpg` (1200x630). Norint pakeisti, paruošk naują 4:5 nuotrauką tais pačiais
 vardais ir perdaryk `og.jpg`.
 
-## Kaip prijungti kontaktų formą
+## Kontaktų forma
 
-Forma dabar turi `action="#"`, todėl rodo pranešimą, kad registracija dar ruošiama.
-Paprasčiausias kelias be savo serverio: [Formspree](https://formspree.io) (nemokamo plano
-užtenka) arba [Web3Forms](https://web3forms.com).
-
-1. Susikurk formą, gausi endpoint, pvz. `https://formspree.io/f/abcdwxyz`.
-2. `index.html` pakeisk `action="#"` į gautą adresą.
-3. Daugiau nieko: `script.js` pats siunčia POST ir parodo sėkmės ar klaidos pranešimą,
-   o išjungus JS forma vis tiek išsiunčiama įprastu būdu.
-
-Antispam: formoje yra paslėptas honeypot laukas `svetaine`, botų užpildytos užklausos atmetamos.
+Forma siunčia į Formspree (https://formspree.io/f/xjykwqyv, paskyra fausta.rudko@gmail.com, nemokamas
+planas, 50 užklausų per mėn.). `script.js` siunčia per fetch ir rodo pranešimą čia pat; be JS forma
+išsiunčiama įprastai ir Formspree nukreipia į `aciu.html`. Laukas `_gotcha` yra honeypot, jį užpildžiusius
+botus Formspree atmeta. Jei žmogus kontaktų lauke įrašo el. paštą, jis dedamas į `_replyto`, tad laiške
+veikia „Atsakyti“.
 
 ## Domenas
 
