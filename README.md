@@ -29,21 +29,11 @@ LinkedIn nuoroda ir Lietuvos psichologų sąjungos narystės ženkliukas (`asset
 Pakeitus `styles.css` ar `script.js`, visuose HTML failuose pakelk `?v=...` numerį prie jų
 nuorodų, kitaip naršyklės iki 10 min rodys seną versiją.
 
-## Kur įdėti nuotrauką
+## Nuotrauka
 
-1. Paruošk portretą maždaug 420x520 (arba tokio pat santykio), išsaugok `assets/portretas.webp`
-   ir atsarginį `assets/portretas.jpg`.
-2. `index.html` hero dalyje pakeisk `<img src="assets/portretas.svg" ...>` į:
-
-```html
-<picture>
-  <source srcset="assets/portretas.webp" type="image/webp">
-  <img src="assets/portretas.jpg" alt="Psichologės Faustos Rudko portretas"
-       width="420" height="520" loading="lazy">
-</picture>
-```
-
-3. `assets/portretas.svg` galima ištrinti.
+Portretas yra `assets/portretas.jpg` (754x942, santykis 4:5), dalinimosi
+paveikslėlis `assets/og.jpg` (1200x630). Norint pakeisti, paruošk naują 4:5 nuotrauką tais pačiais
+vardais ir perdaryk `og.jpg`.
 
 ## Kaip prijungti kontaktų formą
 
